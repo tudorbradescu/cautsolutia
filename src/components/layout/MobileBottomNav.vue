@@ -1,21 +1,19 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router'
-import { Home, Search, Grid3x3, Plus } from 'lucide-vue-next'
-import { computed } from 'vue'
+import { Home, MapPin, Info, Plus } from 'lucide-vue-next'
 
 const route = useRoute()
 
 const tabs = [
   { to: '/', icon: Home, label: 'Acasă', name: 'home' },
-  { to: '/oras/bucuresti', icon: Search, label: 'Caută', name: 'city' },
-  { to: '/categorie/constructii', icon: Grid3x3, label: 'Categorii', name: 'category' },
+  { to: '/#cities-section', icon: MapPin, label: 'Orașe', name: 'cities' },
+  { to: '/despre', icon: Info, label: 'Despre', name: 'about' },
   { to: '/adauga-firma', icon: Plus, label: 'Adaugă', name: 'add-business' },
 ]
 
 const isActive = (tab) => {
   if (tab.name === 'home') return route.name === 'home'
-  if (tab.name === 'city') return route.name === 'city'
-  if (tab.name === 'category') return route.name === 'category'
+  if (tab.name === 'cities') return route.name === 'city' || route.name === 'city-category'
   return route.name === tab.name
 }
 </script>

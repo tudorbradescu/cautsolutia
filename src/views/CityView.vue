@@ -1,36 +1,38 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { ChevronRight, MapPin } from 'lucide-vue-next'
+import {
+  Paintbrush, Building2, Droplets, Zap, Layers, Sofa, TreePine, Sparkles,
+  Truck, Monitor, Wrench, ShieldCheck, Heart, Home, UtensilsCrossed, Briefcase, HelpCircle
+} from 'lucide-vue-next'
 import { cities } from '@/data/cities.js'
 import { businesses } from '@/data/businesses.js'
-import SearchBar from '@/components/ui/SearchBar.vue'
-import BusinessCard from '@/components/ui/BusinessCard.vue'
+import { categories } from '@/data/categories.js'
 import SectionHeading from '@/components/ui/SectionHeading.vue'
+import ScrollReveal from '@/components/ui/ScrollReveal.vue'
 import BackToTop from '@/components/ui/BackToTop.vue'
+
+const iconMap = { Paintbrush, Building2, Droplets, Zap, Layers, Sofa, TreePine, Sparkles, Truck, Monitor, Wrench, ShieldCheck, Heart, Home, UtensilsCrossed, Briefcase }
 
 const route = useRoute()
 
 const city = computed(() => cities.find(c => c.slug === route.params.slug))
 
-const query = ref('')
+// Get categories that have businesses in this city
+const cityCategories = computed(() => {
+  const cityBusinesses = businesses.filter(b => b.city === route.params.slug)
+  const categorySlugs = [...new Set(cityBusinesses.map(b => b.category))]
 
-const filtered = computed(() => {
-  let result = businesses.filter(b => b.city === route.params.slug)
-  if (query.value) {
-    const q = query.value.toLowerCase()
-    result = result.filter(b =>
-      b.name.toLowerCase().includes(q) ||
-      b.description.toLowerCase().includes(q) ||
-      b.services.some(s => s.toLowerCase().includes(q))
-    )
-  }
-  return result
+  return categorySlugs.map(slug => {
+    const cat = categories.find(c => c.slug === slug)
+    const count = cityBusinesses.filter(b => b.category === slug).length
+    return {
+      ...(cat || { name: slug, slug, icon: 'HelpCircle', description: '' }),
+      businessCount: count
+    }
+  })
 })
-
-function onSearch({ query: q }) {
-  query.value = q
-}
 </script>
 
 <template>
@@ -44,31 +46,49 @@ function onSearch({ query: q }) {
       </nav>
 
       <!-- Header -->
-      <div class="flex items-center gap-3 mb-6">
+      <div class="flex items-center gap-3 mb-10">
         <MapPin :size="28" class="text-brand" />
         <SectionHeading
-          :title="`Firme în ${city?.name || 'acest oraș'}`"
-          :subtitle="`Găsește cele mai bune servicii din ${city?.name || 'orașul selectat'}.`"
+          :title="`Servicii în ${city?.name || 'acest oraș'}`"
+          :subtitle="`Alege o categorie pentru a vedea firmele disponibile în ${city?.name || 'orașul selectat'}.`"
           :center="false"
         />
       </div>
 
-      <!-- Search -->
-      <div class="mb-10 max-w-3xl">
-        <SearchBar :initial-city="route.params.slug" compact @search="onSearch" />
+      <!-- Categories grid -->
+      <div v-if="cityCategories.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <ScrollReveal v-for="(cat, i) in cityCategories" :key="cat.slug" :delay="i * 80">
+          <RouterLink
+            :to="{ name: 'city-category', params: { citySlug: route.params.slug, categorySlug: cat.slug } }"
+            class="group flex items-center gap-5 bg-white border border-border-subtle rounded-2xl p-6 transition-all duration-300 hover:border-brand hover:shadow-lg hover:-translate-y-1"
+          >
+            <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center shrink-0 transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
+              <component :is="iconMap[cat.icon] || HelpCircle" :size="26" class="text-brand group-hover:text-white transition-colors" />
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-heading font-bold text-lg text-text-primary group-hover:text-brand transition-colors">
+                {{ cat.name }}
+              </h3>
+              <p class="text-text-muted text-sm mt-0.5">
+                {{ cat.businessCount }} {{ cat.businessCount === 1 ? 'firmă' : 'firme' }}
+              </p>
+              <p v-if="cat.description" class="text-text-secondary text-sm mt-1 line-clamp-1">{{ cat.description }}</p>
+            </div>
+            <ChevronRight :size="18" class="text-text-muted ml-auto shrink-0 group-hover:text-brand transition-colors" />
+          </RouterLink>
+        </ScrollReveal>
       </div>
 
-      <!-- Results -->
-      <div v-if="filtered.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <BusinessCard v-for="biz in filtered" :key="biz.slug" :business="biz" />
-      </div>
-
+      <!-- Empty state -->
       <div v-else class="text-center py-20">
-        <p class="text-text-muted text-lg">Nu am găsit firme în {{ city?.name }}.</p>
+        <div class="w-20 h-20 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-5">
+          <MapPin :size="36" class="text-brand" />
+        </div>
+        <p class="text-text-muted text-lg">Încă nu avem firme listate în {{ city?.name }}.</p>
         <p class="text-text-muted text-sm mt-2">Fii primul care listează o firmă!</p>
         <RouterLink
           to="/adauga-firma"
-          class="inline-block mt-4 bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+          class="inline-block mt-6 bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-colors"
         >
           Adaugă Firma Ta
         </RouterLink>

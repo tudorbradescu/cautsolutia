@@ -3,6 +3,8 @@ import { computed } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { ChevronRight, MapPin, Phone, Globe, Star, ExternalLink, CheckCircle } from 'lucide-vue-next'
 import { businesses } from '@/data/businesses.js'
+import { cities } from '@/data/cities.js'
+import { categories } from '@/data/categories.js'
 import StarRating from '@/components/ui/StarRating.vue'
 import BusinessCard from '@/components/ui/BusinessCard.vue'
 import SectionHeading from '@/components/ui/SectionHeading.vue'
@@ -25,10 +27,16 @@ const similar = computed(() => {
   <div class="pt-20">
     <div v-if="business" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-sm text-text-muted mb-8">
+      <nav class="flex items-center gap-2 text-sm text-text-muted mb-8 flex-wrap">
         <RouterLink to="/" class="hover:text-brand transition-colors">Acasă</RouterLink>
         <ChevronRight :size="14" />
-        <RouterLink :to="{ name: 'city', params: { slug: business.city } }" class="hover:text-brand transition-colors capitalize">{{ business.city }}</RouterLink>
+        <RouterLink :to="{ name: 'city', params: { slug: business.city } }" class="hover:text-brand transition-colors">
+          {{ cities.find(c => c.slug === business.city)?.name || business.city }}
+        </RouterLink>
+        <ChevronRight :size="14" />
+        <RouterLink :to="{ name: 'city-category', params: { citySlug: business.city, categorySlug: business.category } }" class="hover:text-brand transition-colors">
+          {{ categories.find(c => c.slug === business.category)?.name || business.category }}
+        </RouterLink>
         <ChevronRight :size="14" />
         <span class="text-text-primary font-medium">{{ business.name }}</span>
       </nav>

@@ -1,7 +1,6 @@
 <script setup>
 import HeroSearch from '@/components/sections/HeroSearch.vue'
 import CitiesGrid from '@/components/sections/CitiesGrid.vue'
-import CategoriesGrid from '@/components/sections/CategoriesGrid.vue'
 import FeaturedListings from '@/components/sections/FeaturedListings.vue'
 import HowItWorks from '@/components/sections/HowItWorks.vue'
 import WhyCautSolutia from '@/components/sections/WhyCautSolutia.vue'
@@ -18,7 +17,6 @@ defineProps({
   <div>
     <HeroSearch :animate="animate" />
     <CitiesGrid />
-    <CategoriesGrid />
     <FeaturedListings />
     <HowItWorks />
     <WhyCautSolutia />

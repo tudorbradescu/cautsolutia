@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Building2, MapPin, Users } from 'lucide-vue-next'
-import SearchBar from '@/components/ui/SearchBar.vue'
+import { Building2, MapPin, Users, ChevronDown } from 'lucide-vue-next'
 
 const props = defineProps({
   animate: { type: Boolean, default: false }
@@ -26,6 +25,10 @@ function animateCounter(key, target) {
       stats.value[key] = Math.floor(current)
     }
   }, duration / steps)
+}
+
+function scrollToCities() {
+  document.getElementById('cities-section')?.scrollIntoView({ behavior: 'smooth' })
 }
 
 onMounted(() => {
@@ -67,13 +70,18 @@ onMounted(() => {
         perfectă
       </h1>
       <p class="mt-4 text-lg sm:text-xl text-white/80 max-w-2xl mx-auto">
-        Caută firme și servicii în orașul tău. Zugravi, instalatori, electricieni și multe altele — totul într-un singur loc.
+        Alege orașul tău și descoperă cele mai bune firme și servicii — zugravi, instalatori, electricieni și multe altele.
       </p>
 
-      <!-- Search bar -->
-      <div class="mt-8 max-w-3xl mx-auto">
-        <SearchBar />
-      </div>
+      <!-- CTA button -->
+      <button
+        type="button"
+        class="mt-8 inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors shadow-lg"
+        @click="scrollToCities"
+      >
+        <MapPin :size="20" />
+        Alege orașul tău
+      </button>
 
       <!-- Stats -->
       <div class="mt-12 flex items-center justify-center gap-8 sm:gap-16">
@@ -99,6 +107,16 @@ onMounted(() => {
           <p class="text-white/60 text-sm mt-1">Categorii</p>
         </div>
       </div>
+
+      <!-- Scroll indicator -->
+      <button
+        type="button"
+        class="mt-10 mx-auto flex flex-col items-center gap-1 text-white/40 hover:text-white/70 transition-colors animate-bounce"
+        @click="scrollToCities"
+      >
+        <span class="text-xs uppercase tracking-widest">Orașe</span>
+        <ChevronDown :size="20" />
+      </button>
     </div>
   </section>
 </template>

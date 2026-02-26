@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     { path: '/', name: 'home', component: HomeView },
     { path: '/oras/:slug', name: 'city', component: () => import('./views/CityView.vue') },
-    { path: '/categorie/:slug', name: 'category', component: () => import('./views/CategoryView.vue') },
+    { path: '/oras/:citySlug/:categorySlug', name: 'city-category', component: () => import('./views/CategoryView.vue') },
     { path: '/firma/:slug', name: 'business', component: () => import('./views/BusinessView.vue') },
     { path: '/adauga-firma', name: 'add-business', component: () => import('./views/AddBusinessView.vue') },
     { path: '/despre', name: 'about', component: () => import('./views/AboutView.vue') },
