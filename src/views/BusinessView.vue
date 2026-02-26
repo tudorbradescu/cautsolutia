@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
-import { ChevronRight, MapPin, Phone, Globe, Star, ExternalLink, CheckCircle } from 'lucide-vue-next'
+import { ChevronRight, MapPin, Phone, Globe, Star, ExternalLink, CheckCircle, MessageCircle } from 'lucide-vue-next'
 import { businesses } from '@/data/businesses.js'
 import { cities } from '@/data/cities.js'
 import { categories } from '@/data/categories.js'
@@ -84,6 +84,28 @@ const similar = computed(() => {
                 <ExternalLink :size="14" />
               </a>
             </div>
+
+            <!-- Action buttons -->
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <a
+                :href="`https://wa.me/${business.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Bună ziua, am găsit firma dvs. pe CautSoluția.ro și aș dori mai multe informații.')}`"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center justify-center gap-2 bg-brand text-white font-bold px-6 py-3 rounded-xl hover:bg-brand-dark transition-colors"
+              >
+                <MessageCircle :size="18" />
+                Trimite mesaj
+              </a>
+              <a
+                :href="business.website"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center justify-center gap-2 bg-surface-secondary text-text-primary font-semibold px-6 py-3 rounded-xl hover:bg-brand/10 hover:text-brand transition-colors border border-border-subtle"
+              >
+                <Globe :size="18" />
+                Vizitează site-ul
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -109,11 +131,13 @@ const similar = computed(() => {
         <p class="text-white/70 mt-2">Contactează firma direct sau vizitează site-ul pentru mai multe detalii.</p>
         <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            :href="`tel:${business.phone}`"
+            :href="`https://wa.me/${business.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Bună ziua, am găsit firma dvs. pe CautSoluția.ro și aș dori mai multe informații.')}`"
+            target="_blank"
+            rel="noopener"
             class="inline-flex items-center gap-2 bg-white text-brand font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors"
           >
-            <Phone :size="18" />
-            Sună acum
+            <MessageCircle :size="18" />
+            Trimite mesaj
           </a>
           <a
             :href="business.website"
