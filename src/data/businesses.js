@@ -15,7 +15,7 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Mecanică auto', 'Geometrie roți', 'Diagnoză computerizată', 'Vulcanizare', 'Revizie'],
     address: 'Strada Distribuției 1a, Sibiu',
-    image: '/images/businesses/9h-auto-service.webp'
+    image: 'images/businesses/9h-auto-service.jpg'
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Pâine cu maia', 'Patiserie', 'Cozonaci', 'Produse tradiționale'],
     address: 'Arad',
-    image: '/images/businesses/vatra-calda.webp'
+    image: 'images/businesses/vatra-calda.jpg'
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Montaj țiglă', 'Reparații acoperiș', 'Hidroizolație', 'Jgheaburi'],
     address: 'Cristian, Sibiu',
-    image: '/images/businesses/tegola-cristian.webp'
+    image: 'images/businesses/tegola-cristian.jpg'
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Pavaj', 'Garduri și împrejmuiri', 'Terase', 'Amenajare grădini', 'Spații verzi'],
     address: 'București',
-    image: '/images/businesses/contempo.webp'
+    image: 'images/businesses/contempo.jpg'
   },
   {
     id: 5,
@@ -87,7 +87,7 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Apartamente noi', 'Proiecte rezidențiale', 'Consultanță imobiliară'],
     address: 'Sibiu',
-    image: '/images/businesses/erda-residence.webp'
+    image: 'images/businesses/erda-residence.jpg'
   },
   {
     id: 6,
@@ -105,7 +105,7 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Recrutare personal', 'Plasare forță de muncă', 'Consultanță HR'],
     address: 'Timișoara',
-    image: '/images/businesses/vep-recruiting.webp'
+    image: 'images/businesses/vep-recruiting.jpg'
   },
   {
     id: 7,
@@ -123,7 +123,7 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Coafură', 'Cosmetică', 'Manichiură', 'Pedichiură', 'Tratamente faciale'],
     address: 'Sibiu',
-    image: '/images/businesses/salon-new-lifestyle.webp'
+    image: 'images/businesses/salon-new-lifestyle.jpg'
   },
   {
     id: 8,
@@ -141,6 +141,6 @@ export const businesses = [
     bradySoftwareClient: true,
     services: ['Transfer aeroport', 'Transport persoane', 'Închirieri auto', 'Curse regulate'],
     address: 'Sibiu',
-    image: '/images/businesses/smart-shuttle.webp'
+    image: 'images/businesses/smart-shuttle.jpg'
   }
 ]

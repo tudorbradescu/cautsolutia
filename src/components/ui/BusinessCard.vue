@@ -6,6 +6,8 @@ import StarRating from './StarRating.vue'
 defineProps({
   business: { type: Object, required: true }
 })
+
+const base = import.meta.env.BASE_URL
 </script>
 
 <template>
@@ -16,7 +18,7 @@ defineProps({
     <!-- Image -->
     <div class="relative aspect-[16/10] overflow-hidden bg-surface-secondary">
       <img
-        :src="business.image"
+        :src="base + business.image"
         :alt="business.name"
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"

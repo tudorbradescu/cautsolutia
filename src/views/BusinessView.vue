@@ -11,6 +11,8 @@ import SectionHeading from '@/components/ui/SectionHeading.vue'
 import ScrollReveal from '@/components/ui/ScrollReveal.vue'
 import BackToTop from '@/components/ui/BackToTop.vue'
 
+const base = import.meta.env.BASE_URL
+
 const route = useRoute()
 
 const business = computed(() => businesses.find(b => b.slug === route.params.slug))
@@ -46,7 +48,7 @@ const similar = computed(() => {
         <div class="flex flex-col md:flex-row gap-8">
           <!-- Business image -->
           <div class="w-full md:w-80 aspect-[4/3] rounded-2xl overflow-hidden shrink-0">
-            <img :src="business.image" :alt="business.name" class="w-full h-full object-cover">
+            <img :src="base + business.image" :alt="business.name" class="w-full h-full object-cover">
           </div>
 
           <div class="flex-1">

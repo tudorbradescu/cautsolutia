@@ -5,6 +5,8 @@ import { MapPin } from 'lucide-vue-next'
 defineProps({
   city: { type: Object, required: true }
 })
+
+const base = import.meta.env.BASE_URL
 </script>
 
 <template>
@@ -14,7 +16,7 @@ defineProps({
   >
     <!-- Image -->
     <img
-      :src="city.image"
+      :src="base + city.image"
       :alt="city.name"
       class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
       loading="lazy"
