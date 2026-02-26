@@ -44,9 +44,9 @@ const similar = computed(() => {
       <!-- Hero -->
       <div class="bg-gradient-to-br from-brand/10 to-accent/5 rounded-3xl p-8 md:p-12 mb-10">
         <div class="flex flex-col md:flex-row gap-8">
-          <!-- Placeholder image -->
-          <div class="w-full md:w-80 aspect-[4/3] bg-gradient-to-br from-brand/20 to-accent/20 rounded-2xl flex items-center justify-center shrink-0">
-            <span class="text-6xl font-heading font-bold text-brand/30">{{ business.name.charAt(0) }}</span>
+          <!-- Business image -->
+          <div class="w-full md:w-80 aspect-[4/3] rounded-2xl overflow-hidden shrink-0">
+            <img :src="business.image" :alt="business.name" class="w-full h-full object-cover">
           </div>
 
           <div class="flex-1">

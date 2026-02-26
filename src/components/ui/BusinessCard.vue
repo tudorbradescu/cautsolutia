@@ -15,11 +15,12 @@ defineProps({
   >
     <!-- Image -->
     <div class="relative aspect-[16/10] overflow-hidden bg-surface-secondary">
-      <div
-        class="w-full h-full bg-gradient-to-br from-brand/20 to-accent/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-105"
+      <img
+        :src="business.image"
+        :alt="business.name"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
       >
-        <span class="text-4xl font-heading font-bold text-brand/30">{{ business.name.charAt(0) }}</span>
-      </div>
       <div v-if="business.featured" class="absolute top-3 left-3 bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
         <Award :size="12" />
         Recomandat

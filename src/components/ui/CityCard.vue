@@ -12,13 +12,16 @@ defineProps({
     :to="{ name: 'city', params: { slug: city.slug } }"
     class="group relative block aspect-[4/3] rounded-2xl overflow-hidden"
   >
-    <!-- Background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-brand-dark to-brand transition-transform duration-500 group-hover:scale-105">
-      <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_40%,white_0%,transparent_70%)]"></div>
-    </div>
+    <!-- Image -->
+    <img
+      :src="city.image"
+      :alt="city.name"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      loading="lazy"
+    >
 
     <!-- Gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
     <!-- Content -->
     <div class="absolute bottom-0 left-0 right-0 p-5">
