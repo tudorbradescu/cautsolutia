@@ -60,7 +60,7 @@ export const businesses = [
     description: 'Amenajări exterioare profesionale — pavaj, garduri, terase, grădini și spații verzi. Transformăm curtea ta într-un spațiu de vis.',
     shortDescription: 'Amenajări exterioare — pavaj, garduri, terase.',
     category: 'pavaj-terasament',
-    city: 'bucuresti',
+    city: 'sibiu',
     phone: '+40700000004',
     website: 'https://contempo.ro',
     rating: 4.7,
@@ -68,7 +68,7 @@ export const businesses = [
     featured: true,
     bradySoftwareClient: true,
     services: ['Pavaj', 'Garduri și împrejmuiri', 'Terase', 'Amenajare grădini', 'Spații verzi'],
-    address: 'București',
+    address: 'Sibiu',
     image: 'images/businesses/contempo.jpg'
   },
   {
